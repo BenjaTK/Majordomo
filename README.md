@@ -10,11 +10,11 @@ You'll need to [download itch.io's Butler](https://itch.io/docs/butler/installin
 
 1. You can use Butler in the command line to **log in**, but Majordomo also has a log in button. Press it, authorize itch.io, and you're ready to build your game.
 2. Select the **folder** you will store your exported builds in. This has to be a folder ONLY for that purpose.
-  - Inside that folder, add sub-folders for each channel you want to push to. E.g: windows, linux, mac, html5.   
+  - Inside that folder, add sub-folders for each channel you want to push to. E.g: windows, linux, mac, html5.
   ![image](https://github.com/BenjaTK/Majordomo/assets/73806216/9ec84de9-1ee8-4ad0-a42c-3ccdf5451811)
 
 4. Now fill in everything needed in the Majordomo dock, then click deploy all/select only a few to deploy. You have your game up on itch.io! Congrats!
-   
+
 ![image](https://github.com/BenjaTK/Majordomo/assets/73806216/2e424c04-c73a-4434-af9e-b54213a41b27)
 
 All buttons have tooltips if you get lost.

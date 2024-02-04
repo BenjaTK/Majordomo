@@ -4,6 +4,8 @@ extends Control
 
 const CONFIGURATION_SAVE_DIR := "user://majordomo.cfg"
 
+var thread: Thread
+
 @onready var butler_menu: MenuButton = %Butler
 @onready var game_menu: MenuButton = %Game
 @onready var log_out_confirmation: ConfirmationDialog = $LogOutConfirmation
@@ -117,8 +119,6 @@ func _on_save_button_pressed() -> void:
 	_save()
 
 
-func _exit_tree() -> void:
-	_save()
 
 
 func _print_output_as_error_message(output: Array, channel: String) -> void:
@@ -138,7 +138,8 @@ func _on_deploy_all_button_pressed() -> void:
 		return
 
 	for directory in DirAccess.get_directories_at(exports_path):
-		deploy(directory)
+		thread = Thread.new()
+		thread.start(deploy.bind(directory))
 
 
 func _get_exports_path() -> String:
@@ -168,8 +169,15 @@ func _on_channel_selection_dialog_confirmed() -> void:
 			continue
 
 		if child.button_pressed:
-			deploy(child.text)
+			thread = Thread.new()
+			thread.start(deploy.bind(child.text))
+			#deploy(child.text)
 
 
 func _on_info_button_pressed() -> void:
 	OS.shell_open("https://github.com/BenjaTK/Majordomo/tree/main#readme")
+
+
+func _exit_tree() -> void:
+	_save()
+	thread.wait_to_finish()
